@@ -5,6 +5,8 @@ $(document).ready(function () {
     let charChosen = false;
     let phase = "choose-hero";
     let chosen = [];
+    let atkHero = "";
+    let defHero = "";
 
     let charChew = {
         hp: "300",
@@ -39,6 +41,7 @@ $(document).ready(function () {
 
         $(".characters").on("click", charChoose);
         // charClick.on("click",charChoose);
+        $("#battle-button").on("click", attack);
     };
 
 
@@ -76,7 +79,6 @@ $(document).ready(function () {
             $(".character-set").fadeIn();
             $("#status-text").text("CHOOSE YOUR ENEMY");
             showStats(chosenval.val(), "attacker");
-
             phase = "choose-enemy";
         }
         else if (position == "defender") {
@@ -117,13 +119,25 @@ $(document).ready(function () {
 
     function setStats(hero, position) {
         if (position == "attacker") {
+            atkHero = hero;
             $("#atk-hp").text("HP : " + hero.hp);
             $("#atk-ap").text("AP : " + hero.ap);
             $("#atk-ca").text("CA : " + hero.ca);
         } else {
+            defHero = hero;
             $("#def-hp").text("HP : " + hero.hp);
             $("#def-ap").text("AP : " + hero.ap);
             $("#def-ca").text("CA : " + hero.ca);
         }
+    }
+
+    function attack(){
+        console.log("F:attack - START");
+        console.log("F:attack - defHero.hp = " + defHero.hp);
+        console.log("F:attack - atkHero.ap = " + atkHero.ap);
+        defHero.hp -= atkHero.ap;
+        atkHero.hp -= defHero.ca;
+        $("#atk-hp").text("HP : " + atkHero.hp);
+        $("#def-hp").text("HP : " + defHero.hp);
     }
 });
