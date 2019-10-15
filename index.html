@@ -18,12 +18,30 @@
     <div class="container">
         <div class="jumbotron-unit4game">
             <h1 class="display-4 text-center font-weight-bold">STAR WARS GAME</h1>
-            <p class="lead text-center mt-5">CHOOSE YOUR CHARACTER</p>
+            <p id="status-text" class="lead text-center mt-5">CHOOSE YOUR CHARACTER</p>
 
             <!-- <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
         </div>
+        <div class="battle-arena mt-2 mb-5">
+                <div class="row">
+                    <div id = "attacker" class="col-lg-3"></div>
+                    <div id = "attacker-stats" class="col-lg-1 stats rounded mx-auto d-block">
+                        <div class="row" id="atk-hp"></div>
+                        <div class="row" id="atk-ap"></div>
+                        <div class="row" id="atk-ca"></div>
+                    </div>
+                    <div id = "battle-button" class="col-lg-4 mx-auto">
+                    </div>
+                    <div id = "defender-stats" class="col-lg-1 stats rounded mx-auto d-block">
+                            <div class="row" id="def-hp"></div>
+                            <div class="row" id="def-ap"></div>
+                            <div class="row" id="def-ca"></div>
+                    </div>
+                    <div id = "defender" class="col-lg-3"></div>
+                </div>
+            </div>
         <div class="character-set">
             <div class="row">
                 <div class="col-lg-3">
@@ -31,36 +49,25 @@
                         <img src="assets/images/owk.jpg">
                     </button>
                 </div>
-                <div class="col-lg-3" class="rounded mx-auto d-block characters" value="dv">
-                    <button id="dv">
+                <div class="col-lg-3">
+                    <button id="dv" class="rounded mx-auto d-block characters" value="dv">
                         <img src="assets/images/dv.jpg">
                     </button>
                 </div>
-                <div class="col-lg-3" class="rounded mx-auto d-block characters" value="chew">
-                    <button id="chew">
+                <div class="col-lg-3">
+                    <button id="chew"class="rounded mx-auto d-block characters" value="chew">
                         <img src="assets/images/c.png">
                     </button>
                 </div>
-                <div class="col-lg-3" class="rounded mx-auto d-block characters" value="st">
-                    <button id="st">
+                <div class="col-lg-3">
+                    <button id="st" class="rounded mx-auto d-block characters" value="st">
                         <img src="assets/images/st.jpg">
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="battle-arena mt-5">
-            <div class="row">
-                <div id = "attacker" class="attacker col-lg-3">
-
-                </div>
-                <div class="col-lg-9">
-                </div>
-                <div id = "defender" class="defender col-lg-3">
-
-                </div>
-            </div>
-        </div>
+        
     </div>
 
 </body>
