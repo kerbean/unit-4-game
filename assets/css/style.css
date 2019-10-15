@@ -1,0 +1,13 @@
+body{
+    background-image: url("../images/bg-vs.jpg");
+    background-size: cover;
+}
+
+.jumbotron-unit4game {
+    opacity: 0.5;
+    background: #999999;
+}
+
+img {
+    width: 200px;
+}
