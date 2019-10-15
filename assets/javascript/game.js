@@ -65,6 +65,19 @@ $(document).ready(function () {
                 removeChosen($(this), "defender");
             }
         }
+        else if (phase >= 2 && phase < 4 && defHero.hp <= 0) {
+            if (charChosen && !chosen.includes($(this).val())) {
+                $(this).fadeOut();
+                console.log("F:charChoose : this=" + $(this));
+                $("#defender").empty();
+                $("#battle-button").empty();
+                removeChosen($(this), "defender");
+            }
+        }
+        else if (phase == 4) {
+            $(".alert").addClass('show');
+            $("#alertwin").text("YOU WIN!! ALL ENEMIES ELIMINATED! GOOD JOB!!!");
+        }
     }
 
     function removeChosen(chosenval, position) {
@@ -87,7 +100,9 @@ $(document).ready(function () {
             $(".character-set").fadeIn();
             $("#status-text").text("BATTLE START!!!");
             showStats(chosenval.val(), "defender");
-            phase = "battle-start";
+            if (phase == "choose-enemy") {
+                phase = 1;
+            }
             $("#battle-button").append('<button><img src="assets/images/battle.png"></button>');
         }
     }
@@ -142,17 +157,31 @@ $(document).ready(function () {
             $("#def-hp").text("HP : " + defHero.hp);
             if (atkHero.hp <= 0) {
                 $(".alert").addClass('show');
-                $("#alertwin").text("YOUR HEALTH IS EXHAUSTED. YOU LOSE!!");
-                setInterval(removeAlert, 5000);
+                $("#alertwin").text("YOUR HEALTH IS EXHAUSTED. YOU LOSE!! CLICK RESTART TO PLAY AGAIN!");
+                $("#battle-button").empty();
+                $("#battle-button").append('<button><img src="assets/images/restart.png"></button>');
+                setInterval(removeAlert, 10000);
             }
-            else if(defHero.hp <= 0){
-                $(".alert").addClass('show');
-                $("#alertwin").text("YOU WIN!! CHOOSE YOUR NEXT OPPONENT!!");
-                setInterval(removeAlert, 5000);
+            else if (defHero.hp <= 0) {
+                phase++;
+                if (phase == 4) {
+                    $(".alert").addClass('show');
+                    $("#alertwin").text("YOU WIN!! ALL ENEMIES ELIMINATED! GOOD JOB!!!");
+                    $("#battle-button").empty();
+
+                    // setInterval(removeAlert, 3000);
+                } else {
+                    $(".alert").addClass('show');
+                    $("#alertwin").text("CURRENT ENEMY DEFEATED!! CHOOSE YOUR NEXT OPPONENT!!");
+                    setInterval(removeAlert, 3000);
+                    $("#battle-button").empty();
+                }
+                console.log(phase);
             }
+            atkHero.ap += 15;
+            $("#atk-ap").text("AP : " + atkHero.ap);
         }
-        atkHero.ap += 15;
-        $("#atk-ap").text("AP : " + atkHero.ap);
+
     }
 
     function removeAlert() {
