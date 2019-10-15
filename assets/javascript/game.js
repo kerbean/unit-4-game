@@ -71,12 +71,12 @@ $(document).ready(function () {
         console.log(chosen);
         if (position == "attacker") {
             chosenval.detach().appendTo('#attacker');
-            chosenval.prop('disable',true);
+            chosenval.prop('disable', true);
             chosenval.append("<h3>ATTACKER</h3>");
             $(".character-set").fadeIn();
             $("#status-text").text("CHOOSE YOUR ENEMY");
             showStats(chosenval.val(), "attacker");
-            
+
             phase = "choose-enemy";
         }
         else if (position == "defender") {
@@ -99,24 +99,31 @@ $(document).ready(function () {
         console.log("F:showStats : position = " + position);
         switch (hero) {
             case "chew":
+                setStats(charChew, position);
                 break;
             case "owk":
                 console.log("F:showStats : showing hero stats");
-                if (position == "attacker") {
-                    $("#atk-hp").text("HP : " + charOWK.hp);
-                    $("#atk-ap").text("AP : " + charOWK.ap);
-                    $("#atk-ca").text("CA : " + charOWK.ca);
-                } else {
-                    $("#def-hp").text("HP : " + charOWK.hp);
-                    $("#def-ap").text("AP : " + charOWK.ap);
-                    $("#def-ca").text("CA : " + charOWK.ca);
-                }
+                setStats(charOWK, position);
                 break;
             case "dv":
+                setStats(charDV, position);
                 break;
             case "st":
+                setStats(charST, position);
                 break;
 
+        }
+    }
+
+    function setStats(hero, position) {
+        if (position == "attacker") {
+            $("#atk-hp").text("HP : " + hero.hp);
+            $("#atk-ap").text("AP : " + hero.ap);
+            $("#atk-ca").text("CA : " + hero.ca);
+        } else {
+            $("#def-hp").text("HP : " + hero.hp);
+            $("#def-ap").text("AP : " + hero.ap);
+            $("#def-ca").text("CA : " + hero.ca);
         }
     }
 });
