@@ -9,24 +9,24 @@ $(document).ready(function () {
     let defHero = "";
 
     let charChew = {
-        hp: "300",
-        ap: "15",
-        ca: "15",
+        hp: 300,
+        ap: 15,
+        ca: 15,
     };
     let charOWK = {
-        hp: "150",
-        ap: "25",
-        ca: "20",
+        hp: 150,
+        ap: 25,
+        ca: 20,
     };
     let charDV = {
-        hp: "200",
-        ap: "20",
-        ca: "20",
+        hp: 200,
+        ap: 20,
+        ca: 20,
     };
     let charST = {
-        hp: "150",
-        ap: "25",
-        ca: "30",
+        hp: 150,
+        ap: 25,
+        ca: 30,
     };
 
 
@@ -131,13 +131,31 @@ $(document).ready(function () {
         }
     }
 
-    function attack(){
+    function attack() {
         console.log("F:attack - START");
         console.log("F:attack - defHero.hp = " + defHero.hp);
         console.log("F:attack - atkHero.ap = " + atkHero.ap);
-        defHero.hp -= atkHero.ap;
-        atkHero.hp -= defHero.ca;
-        $("#atk-hp").text("HP : " + atkHero.hp);
-        $("#def-hp").text("HP : " + defHero.hp);
+        if (defHero.hp > 0 && atkHero.hp > 0) {
+            defHero.hp -= atkHero.ap;
+            atkHero.hp -= defHero.ca;
+            $("#atk-hp").text("HP : " + atkHero.hp);
+            $("#def-hp").text("HP : " + defHero.hp);
+            if (atkHero.hp <= 0) {
+                $(".alert").addClass('show');
+                $("#alertwin").text("YOUR HEALTH IS EXHAUSTED. YOU LOSE!!");
+                setInterval(removeAlert, 5000);
+            }
+            else if(defHero.hp <= 0){
+                $(".alert").addClass('show');
+                $("#alertwin").text("YOU WIN!! CHOOSE YOUR NEXT OPPONENT!!");
+                setInterval(removeAlert, 5000);
+            }
+        }
+        atkHero.ap += 15;
+        $("#atk-ap").text("AP : " + atkHero.ap);
+    }
+
+    function removeAlert() {
+        $(".alert").removeClass('show');
     }
 });

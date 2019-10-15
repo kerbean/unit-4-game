@@ -22,3 +22,14 @@ img {
     color: white;
 }
 
+.alert{
+    position: fixed;
+    height: 50px;
+    /* top: -200px; */
+}
+
+#reset{
+    width: 200px;
+    color: black;
+    -webkit-text-stroke-color: black;
+}
